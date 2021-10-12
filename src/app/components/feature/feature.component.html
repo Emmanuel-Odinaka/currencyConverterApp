@@ -1,0 +1,45 @@
+<div class="ui hidden divider"></div>
+<div class="ui container">
+  <h1 class="ui center aligned massive header">Currency Converter</h1>
+  <form
+    class="ui very padded raised segment form"
+    [formGroup]="featureForm"
+    (ngSubmit)="onSubmitted()"
+  >
+    <div class="field">
+      <label>Base Currency</label>
+      <fui-select
+        formControlName="currencyBase"
+        class="ui fluid dropdown selection"
+      >
+        <fui-select-option
+          *ngFor="let currency of currencies"
+          [value]="currency"
+          >{{ currency }}
+        </fui-select-option>
+      </fui-select>
+    </div>
+    <div class="field">
+      <label>Converted Currency</label>
+      <fui-select
+        formControlName="currencyValue"
+        class="ui fluid dropdown selection"
+      >
+        <fui-select-option
+          *ngFor="let currency of currencies"
+          [value]="currency"
+          #searchSelect
+        >
+        </fui-select-option>
+      </fui-select>
+    </div>
+    <button class="ui red button" type="submit">Convert</button>
+    <div class="ui segment">
+      <p *ngIf="base !== value">1 {{ base }} = {{ banks }} {{ value }}</p>
+      <p [ngStyle]="{ color: 'red' }" *ngIf="base === value">
+        {{ errorMessage }}
+      </p>
+    </div>
+  </form>
+</div>
+<div class="ui hidden divider"></div>
